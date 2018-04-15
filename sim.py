@@ -1,5 +1,23 @@
+import data
 import math
+import MySQLdb
 import random
+
+# Set up database connection
+connection = MySQLdb.connect (host = "localhost",
+                              user = "pybull",
+                              passwd = "theword",
+                              db = "parts")
+
+cursor = connection.cursor()
+cursor.execute ("SELECT VERSION()")
+row = cursor.fetchone()
+print("server version:", row[0])
+cursor.close()
+connection.close()
+
+data = data.loadData()
+print(data)
 
 # Time to run simulation
 daysInYear = 360
